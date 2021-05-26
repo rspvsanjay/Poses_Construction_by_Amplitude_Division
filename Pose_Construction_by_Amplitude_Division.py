@@ -39,6 +39,7 @@ for number1 in range(0,subjectsNumber):#subjectsNumber
     frames = os.listdir(path3)
     framesNumber = len(frames)
     print(framesNumber)
+    path11 = save_path+subjects[number1]+'/'+sequences[number2]+'/'
     try:
         os.makedirs(path11)
     except OSError:
@@ -74,7 +75,7 @@ for number1 in range(0,subjectsNumber):#subjectsNumber
           count1 = count1+1
       pre_val = for_val
       pose01 = pose01/count1
-      path11 = save_path+subjects[number1]+'/'+sequences[number2]+'/'
+      
       path2save = path11 + 'pose0'+str(num1+1)+'.png'
       print(path2save)
       cv2.imwrite(path2save, pose01)
