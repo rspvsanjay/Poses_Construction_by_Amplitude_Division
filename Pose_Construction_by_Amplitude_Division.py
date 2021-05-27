@@ -64,10 +64,11 @@ for number1 in range(0,subjectsNumber):#subjectsNumber
     max1 = max(vector2)
     min1 = min(vector2)
     diff = max1-min1
-    ap_div = diff/7
+    division = 7 # that define the number of poses, you may change as per requirement, here the 7 poses are targeted to construct
+    ap_div = diff/division
     pre_val = min1
     for_val = 0.0
-    for num1 in range(0,7):
+    for num1 in range(0,division):
       for_val = min1 + (num1+1)*ap_div
       pose01 = np.zeros((256, 256, 3), dtype=float)
       count1 = 0
