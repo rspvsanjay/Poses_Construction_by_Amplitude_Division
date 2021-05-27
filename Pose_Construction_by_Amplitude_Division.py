@@ -3,6 +3,12 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+# def vec(framesNumber):
+#   frame_x = []
+#   for number3 in range(0,framesNumber):
+#     frame_x.append(number3)
+#   return frame_x
+
 def smooth(vector1,framesNumber):
   vector2 = []
   #frame_x = []
@@ -23,7 +29,7 @@ def smooth(vector1,framesNumber):
   return vector2
 
 path1 = '/content/drive/MyDrive/CASIA_B036degree_Centered_Alinged/'
-save_path = '/content/drive/MyDrive/CASIA_B036degree_Centered_Alinged_PEI/'
+save_path = '/content/drive/MyDrive/CASIA_B036degree_Centered_Alinged_Pose_Energy_Image/'
 #print(path1)
 subjects = os.listdir(path1)
 subjectsNumber = len(subjects)
@@ -41,28 +47,26 @@ for number1 in range(0,subjectsNumber):#subjectsNumber
     print(framesNumber)
     path11 = save_path+subjects[number1]+'/'+sequences[number2]+'/'
     try:
-        os.makedirs(path11)
+      os.makedirs(path11)
     except OSError:
-        print("Creation of the directory %s failed" % path11)
+      print("Creation of the directory %s failed" % path11)
     else:
-        print("Successfully created the directory %s " % path11)
+      print("Successfully created the directory %s " % path11)
     vector1 = []
-
     for number3 in range(0,framesNumber):
       path4 = path3+frames[number3]
       img = cv2.imread(path4)
       numberOfNonZeros = np.count_nonzero(img)
       vector1.append(numberOfNonZeros)
-
+    print(vector1)
     vector2 = smooth(vector1,framesNumber)
-    # frame_x = vec(framesNumber)
+    frame_x = vec(framesNumber)
     max1 = max(vector2)
     min1 = min(vector2)
     diff = max1-min1
     ap_div = diff/7
     pre_val = min1
     for_val = 0.0
-
     for num1 in range(0,7):
       for_val = min1 + (num1+1)*ap_div
       pose01 = np.zeros((256, 256, 3), dtype=float)
@@ -79,3 +83,6 @@ for number1 in range(0,subjectsNumber):#subjectsNumber
       path2save = path11 + 'pose0'+str(num1+1)+'.png'
       print(path2save)
       cv2.imwrite(path2save, pose01)
+    # plt.plot(frame_x,vector1)
+    # plt.plot(frame_x,vector2, color='red')
+    # plt.show()
