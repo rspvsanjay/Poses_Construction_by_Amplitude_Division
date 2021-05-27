@@ -29,7 +29,7 @@ def smooth(vector1,framesNumber):
   return vector2
 
 path1 = '/content/drive/MyDrive/CASIA_B036degree_Centered_Alinged/'
-save_path = '/content/drive/MyDrive/CASIA_B036degree_Centered_Alinged_Pose_Energy_Image/'
+save_path = '/content/drive/MyDrive/CASIA_B036degree_Centered_Alinged_PEI/'
 #print(path1)
 subjects = os.listdir(path1)
 subjectsNumber = len(subjects)
